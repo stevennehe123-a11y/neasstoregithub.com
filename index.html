@@ -1,100 +1,340 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Sepatu Pro</title>
-<link rel="stylesheet" href="style.css">
+
+<title>Happy Birthday ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#fad0c4);
+overflow-x:hidden;
+text-align:center;
+color:white;
+
+}
+
+/* Bintang */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://i.imgur.com/YKY28eT.png");
+animation:move 60s linear infinite;
+opacity:.4;
+z-index:-2;
+}
+
+@keyframes move{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+/* Gift */
+
+#giftPage{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+}
+
+.gift{
+
+font-size:130px;
+cursor:pointer;
+transition:.5s;
+
+}
+
+.gift:hover{
+
+transform:scale(1.2) rotate(10deg);
+
+}
+
+.click{
+
+font-size:20px;
+margin-top:20px;
+
+animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+50%{opacity:.3;}
+
+}
+
+/* Content */
+
+#content{
+
+display:none;
+padding:30px;
+
+}
+
+h1{
+
+font-size:50px;
+margin-top:20px;
+
+animation:fade 2s;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(-40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.message{
+
+max-width:800px;
+margin:auto;
+font-size:20px;
+line-height:1.8;
+margin-top:25px;
+
+}
+
+/* Gallery */
+
+.gallery{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-top:50px;
+
+}
+
+.gallery img{
+
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:15px;
+transition:.5s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.05);
+
+}
+
+footer{
+
+margin:60px;
+font-size:18px;
+
+}
+
+button{
+
+margin-top:25px;
+padding:15px 35px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff4081;
+cursor:pointer;
+
+}
+
+canvas{
+
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<!-- Navbar -->
-<header>
-    <div class="navbar">
-        <div class="logo">NEAS STORE</div>
-        <nav>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li class="dropdown">
-                    <a href="#product-list" class="dropbtn nav-link">Produk ▼</a>
-                    <ul class="dropdown-content">
-                        <li><a href="#" onclick="filterCategory('sneakers')">Sneakers</a></li>
-                        <li><a href="#" onclick="filterCategory('boots')">Boots</a></li>
-                        <li><a href="#" onclick="filterCategory('formal')">Lari</a></li>
-                        <li><a href="#" onclick="filterCategory('all')">Semua</a></li>
-                    </ul>
-                </li>
-                <li><a href="#slider-container" class="nav-link">Promo</a></li>
-                <li><a href="#contact" class="nav-link">Kontak</a></li>
-            </ul>
-            <button class="nav-toggle" onclick="toggleNav()">☰</button>
-        </nav>
-        <button class="cart-btn" onclick="toggleCartModal()">Keranjang (<span id="cart-count">0</span>)</button>
-    </div>
-</header>
+<div class="stars"></div>
 
-<!-- Hero Section -->
-<section id="home" class="hero">
-    <div class="hero-text">
-        <h1>Selamat Datang di NEAS STORE</h1>
-        <p>Temukan sepatu terbaik untuk semua gaya Anda</p>
-        <a href="#product-list" class="cta-btn">Belanja Sekarang</a>
-    </div>
-</section>
+<div id="giftPage">
 
-<!-- Slider Promo -->
-<section>
-    <div class="slider">
-        <div class="slides">
-            <div class="slide"><img src="1.webp" alt="Promo 1"></div>
-            <div class="slide"><img src="5.webp" alt="Promo 2"></div>
-            <div class="slide"><img src="10.webp" alt="Promo 3"></div>
-        </div>
-    </div>
-</section>
+<div class="gift" onclick="openGift()">
 
-<!-- Produk Section -->
-<section id="product-list">
-    <h2>Produk Kami</h2>
-    <div class="filters">
-        <select id="categoryFilter" onchange="applyFilters()">
-            <option value="all">Semua Kategori</option>
-            <option value="sneakers">Sneakers</option>
-            <option value="boots">Boots</option>
-            <option value="Lari">Lari</option>
-        </select>
-        <input type="text" id="searchInput" placeholder="Cari produk..." oninput="applyFilters()">
-    </div>
-    <div class="products" id="products"></div>
-</section>
+🎁
 
-<!-- Cart Modal -->
-<div class="cart-modal" id="cartModal">
-    <div class="cart-content">
-        <span class="close" onclick="toggleCartModal()">&times;</span>
-        <h2>Keranjang Belanja</h2>
-        <div id="cart-items"></div>
-        <p>Total: Rp <span id="cart-total">0</span></p>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
-    </div>
 </div>
 
-<!-- Toast -->
-<div id="toast"></div>
+<div class="click">
 
-<!-- Contact Section -->
-<footer id="contact">
-    <div class="footer-content">
-        <h2>Kontak Kami</h2>
-        <p>Email: NEASSTORE@Gmail.com | Telp: 0895-1415-6897</p>
-        <div class="social">
-            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a>
-        </div>
-        <p>&copy; 2025 TokoSepatuPro. All Rights Reserved.</p>
-    </div>
+Klik Hadiahnya ❤️
+
+</div>
+
+</div>
+
+<div id="content">
+
+<h1>
+
+🎂 Selamat Ulang Tahun 🎂
+
+</h1>
+
+<p class="message">
+
+
+Selamat ulang tahun sayang Hari ini adalah hari yang sangat spesial.
+
+Semoga setiap doa yang kamu panjatkan dikabulkan Tuhan.
+
+Semoga selalu diberikan kesehatan,
+
+kebahagiaan,
+
+umur panjang,
+
+kesuksesan,
+
+dan dikelilingi oleh orang-orang yang mencintaimu.
+
+<br><br>
+
+Terima kasih sudah hadir dalam hidupku.
+
+Semoga senyummu tidak pernah hilang.
+
+Happy Birthday ❤️
+
+</p>
+
+<button onclick="document.getElementById('music').play()">
+
+▶ Putar Musik
+
+</button>
+
+<h2 style="margin-top:60px;">📸 Galeri</h2>
+
+<div class="gallery">
+
+<img src="1.jpeg">
+
+<img src="2.jpeg">
+
+<img src="3.jpeg">
+
+<img src="4.jpeg">
+
+<img src="5.jpeg">
+
+<img src="6.jpeg">
+
+</div>
+
+<footer>
+
+Made with ❤️
+
 </footer>
 
-<script src="script.js"></script>
+</div>
+
+<audio id="music" loop>
+
+<source src="hbd.mp3" type="audio/mpeg">
+
+</audio>
+
+<script>
+
+function openGift(){
+
+document.getElementById("giftPage").style.display="none";
+
+document.getElementById("content").style.display="block";
+
+confetti();
+
+document.getElementById("music").play();
+
+}
+
+function confetti(){
+
+for(let i=0;i<200;i++){
+
+let conf=document.createElement("div");
+
+conf.innerHTML="🎉";
+
+conf.style.position="fixed";
+
+conf.style.left=Math.random()*100+"%";
+
+conf.style.top="-20px";
+
+conf.style.fontSize=(Math.random()*25+15)+"px";
+
+document.body.appendChild(conf);
+
+let fall=Math.random()*4+4;
+
+conf.animate([
+
+{transform:"translateY(0px)"},
+
+{transform:"translateY(110vh) rotate(720deg)"}
+
+],{
+
+duration:fall*1000,
+
+iterations:1
+
+});
+
+setTimeout(()=>conf.remove(),fall*1000);
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
-
